@@ -25,7 +25,7 @@ export default function CarouselCell({ selectedGenre }) {
                     style={{ backgroundImage: `url(${element.coverLink})`, width: "100px", height: "180px", backgroundSize: "cover", margin: "40px" }}
                     key={element.id}
                 >
-                    <a href={"/manga/" + element.id}>{element.title}</a>
+                    <a id="mangaLink" href={"/manga/" + element.id}>{element.title}</a>
                 </div>
             ))}
         </div>
