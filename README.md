@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# MangaMonkey User Frontend App
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![Auth0](https://img.shields.io/badge/Auth0-%23004FD7.svg?style=for-the-badge&logo=auth0&logoColor=white)![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can set up this app by following these steps:
 
-## Available Scripts
+## 1. Prerequisites
 
-In the project directory, you can run:
+- Ensure that you have followed all instructions provided [here](https://github.com/S3DB02/MangaMonkey)
+- If you're running the microservices individually, you need to run the [Manga API](https://github.com/S3DB02/mangamonkey-manga-api) and [Users API](https://github.com/S3DB02/mangamonkey-users-api) first. Make sure they're running before proceeding.
 
-### `npm start`
+### Auth0 app setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The authentication provider for this app is Auth0, so you need to set up an Auth0 application first.
+You also need to create a test account in order to enable frontend auth testing.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Navigate to [Auth0 Dashboard](https://manage.auth0.com/) and click 'Create Application'
+- Follow the setup instructions
+- After the setup, choose the 'Single Page Web Applications' option
+- Register the app and continue to the settings
+- Enable the necessary connection methods
+- In the settings, add `http://localhost:3000` to the "Allowed Callback URLs", "Allowed Logout URLs", and "Allowed Web Origins" fields
+- Go to the 'Users' tab and add a new user with email `test@mangamonkey.com` and password `mmtest`
 
-### `npm test`
+### Create .env file for Cypress
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project uses a .env file which needs to be created manually to store environment variables for Cypress.
 
-### `npm run build`
+- In the root directory, create a new file named `cypress.env.json`
+- Add the necessary environment variables for your tests in this file
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 2. Set Up Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Open your terminal.
+- Navigate to your project directory using the `cd` command.
+- Install the project's dependencies by running:
+    ```
+    npm install
+    ```
+- You can add any additional dependencies you might want to use with `npm install <dependency>`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. Run Your Project
 
-### `npm run eject`
+- Start the project by running
+    ```
+    npm start
+    ```
+    
+## Testing
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project comes with end-to-end tests ran by Cypress.
+These tests are located in `/mangamonkey/cypress/e2e`. You can write more tests or edit the current ones there.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Automatic testing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- To run tests automatically, run `npm test`. This initializes all tests from the `e2e` folder and saves the recording of the test to `/frontend/cypress/videos`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This is an example of a test video:
 
-## Learn More
+![](https://raw.githubusercontent.com/S3DB02/documentation/main/docs/images/cypress.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Manual tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- If you want to run tests manually, you can use `npx cypress open`. This will open a window with all your tests, and you can choose which ones to run.
